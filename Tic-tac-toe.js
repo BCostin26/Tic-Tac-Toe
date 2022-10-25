@@ -1,6 +1,6 @@
 let counter = 0;
 let btnId;
-var playerTurn = "X";
+let playerTurn = "X";
 let btnIds = [
     "", "", "",
     "", "", "",
