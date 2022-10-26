@@ -1,11 +1,7 @@
 let counter = 0;
-let btnId;
+let id;
 let playerTurn = "X";
-let btnIds = [
-    "", "", "",
-    "", "", "",
-    "", "", ""
-];
+let btnIds = ["", "", "", "", "", "", "", "", ""];
 let winMods = [
     [0, 1, 2],
     [3, 4, 5],
@@ -17,17 +13,20 @@ let winMods = [
     [2, 4, 6]
 ];
 
-function selectButton(btnId) {
+function selectButton(id) {
     ++counter;
-    document.getElementById(btnId).innerHTML = playerTurn;
-    btnIds[btnId] = playerTurn;
+    document.getElementById(id).innerHTML = playerTurn;
+    document.getElementById(id).disabled = true;
+    btnIds[id] = playerTurn;
     if (playerTurn == "X") {
         playerTurn = "O";
     } else {
         playerTurn = "X";
     }
     document.getElementById("player").innerHTML = "It`s player '" + playerTurn + "' turn!";
-    winnerCheck();
+    if (counter > 4) {
+        winnerCheck();
+    }
 }
 
 function winnerCheck() {
