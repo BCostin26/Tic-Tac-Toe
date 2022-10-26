@@ -18,31 +18,25 @@ function selectButton(id) {
     document.getElementById(id).innerHTML = playerTurn;
     document.getElementById(id).disabled = true;
     btnIds[id] = playerTurn;
+    document.getElementById("player").innerHTML = "It`s player '" + playerTurn + "' turn!";
+    if (counter > 4) {
+        winnerCheck();
+    }
     if (playerTurn == "X") {
         playerTurn = "O";
     } else {
         playerTurn = "X";
     }
-    document.getElementById("player").innerHTML = "It`s player '" + playerTurn + "' turn!";
-    if (counter > 4) {
-        winnerCheck();
-    }
 }
 
 function winnerCheck() {
     for (let i = 0; i <= 7; ++i) {
-        if (btnIds[winMods[i][0]] == "X" && btnIds[winMods[i][1]] == "X" && btnIds[winMods[i][2]] == "X") {
-            document.getElementById(winMods[i][0]).style.backgroundColor = "lightgreen";
-            document.getElementById(winMods[i][1]).style.backgroundColor = "lightgreen";
-            document.getElementById(winMods[i][2]).style.backgroundColor = "lightgreen";
-            document.getElementById("player").innerHTML = "Player 'X' is the winner!"
-            document.getElementById("player").style.color = "lightgreen";
-            endGame();
-        } else if (btnIds[winMods[i][0]] == "O" && btnIds[winMods[i][1]] == "O" && btnIds[winMods[i][2]] == "O") {
-            document.getElementById(winMods[i][0]).style.backgroundColor = "lightgreen";
-            document.getElementById(winMods[i][1]).style.backgroundColor = "lightgreen";
-            document.getElementById(winMods[i][2]).style.backgroundColor = "lightgreen";
-            document.getElementById("player").innerHTML = "Player 'O' is the winner!"
+        if (btnIds[winMods[i][0]] == "X" && btnIds[winMods[i][1]] == "X" && btnIds[winMods[i][2]] == "X" ||
+            btnIds[winMods[i][0]] == "O" && btnIds[winMods[i][1]] == "O" && btnIds[winMods[i][2]] == "O") {
+            for (let j = 0; j < 3; ++j) {
+                document.getElementById(winMods[i][j]).style.backgroundColor = "lightgreen";
+            }
+            document.getElementById("player").innerHTML = "Player '" + playerTurn + "' is the winner!"
             document.getElementById("player").style.color = "lightgreen";
             endGame();
         }
